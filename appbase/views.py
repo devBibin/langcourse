@@ -5,6 +5,6 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def index(request):
-    return HttpResponse("Hello, world. Home page.")
+    return HttpResponse("Настя котеночек!")
 
 # Create your views here.
