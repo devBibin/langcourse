@@ -1,1 +1,1 @@
-web: gunicorn langcourse::appbase
+web: gunicorn landcourses.wsgi
