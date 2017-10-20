@@ -1,1 +1,1 @@
-web: gunicorn langcourses
+web: gunicorn langcourse::appbase
