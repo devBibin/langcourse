@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 #Use the following live settings to build on Travis CI
-if os.getenv('BUILD_ON_TRAVIS', None):
+if 'TRAVIS' in os.environ:
     SECRET_KEY = "SecretKeyForUseOnTravis"
     DEBUG = False
     TEMPLATE_DEBUG = True
