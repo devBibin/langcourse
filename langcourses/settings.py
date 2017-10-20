@@ -83,6 +83,17 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+if TRAVIS_ENVIRONMENT:
+    DATABASES = {
+        'default': {
+            'ENGINE':   'django.db.backends.postgresql_psycopg2',
+            'NAME':     'travisdb',  # Must match travis.yml setting
+            'USER':     'postgres',
+            'PASSWORD': '',
+            'HOST':     'localhost',
+            'PORT':     '',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
