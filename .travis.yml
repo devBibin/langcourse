@@ -18,7 +18,7 @@ before_script:
   - psql -c "CREATE DATABASE travisdb;" -U postgres
 
 script:
-  - python manage.py test
+  - bash run_script.sh
 
 notifications:
   email: false
