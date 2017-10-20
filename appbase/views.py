@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.http import HttpResponse
 
-
 def index(request):
-    return HttpResponse("Hello, world. Views page.")
+    return HttpResponse("Hello, world. Home page.")
+
 # Create your views here.
