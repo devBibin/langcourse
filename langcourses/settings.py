@@ -11,19 +11,40 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+#Use the following live settings to build on Travis CI
+if os.getenv('BUILD_ON_TRAVIS', None):
+    SECRET_KEY = "SecretKeyForUseOnTravis"
+    DEBUG = False
+    TEMPLATE_DEBUG = True
+
+    DATABASES = {
+        'default': {
+            'ENGINE':   'django.db.backends.postgresql_psycopg2',
+            'NAME':     'travisdb',  # Must match travis.yml setting
+            'USER':     'postgres',
+            'PASSWORD': '',
+            'HOST':     'localhost',
+            'PORT':     '',
+        }
+    }
+else:
+    # SECURITY WARNING: keep the secret key used in production secret!
+    SECRET_KEY = 'o7u%rzuar0@z8z3m#!0iv#o5k#b_rbs$rqg+zira3w7j%m+ko('
+    # SECURITY WARNING: don't run with debug turned on in production!
+    DEBUG = True
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'languages_test_app_db',
+            'USER': 'vladimir',
+            'PASSWORD': 'app_test_073_13',
+            'HOST': '127.0.0.1',
+            'PORT': '5432',
+        }
+    }
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'o7u%rzuar0@z8z3m#!0iv#o5k#b_rbs$rqg+zira3w7j%m+ko('
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -69,31 +90,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'langcourses.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'languages_test_app_db',
-        'USER': 'vladimir',
-        'PASSWORD': 'app_test_073_13',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
-}
-if 'TRAVIS' in os.environ:
-    DATABASES = {
-        'default': {
-            'ENGINE':   'django.db.backends.postgresql_psycopg2',
-            'NAME':     'travisdb',  # Must match travis.yml setting
-            'USER':     'postgres',
-            'PASSWORD': '',
-            'HOST':     'localhost',
-            'PORT':     '',
-        }
-    }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
