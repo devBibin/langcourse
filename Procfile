@@ -1,1 +1,1 @@
-web: gunicorn langcourse
+web: gunicorn langcourses
