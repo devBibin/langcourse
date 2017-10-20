@@ -83,7 +83,7 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-if TRAVIS_ENVIRONMENT:
+if 'TRAVIS' in os.environ:
     DATABASES = {
         'default': {
             'ENGINE':   'django.db.backends.postgresql_psycopg2',
